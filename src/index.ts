@@ -7,7 +7,6 @@ const app = express()
 const port = 4000
 
 import session from 'express-session';
-import { decode } from 'punycode';
 app.use(session({
   secret: 'tiny-rp-secret',
   cookie: {}
@@ -29,7 +28,7 @@ const issuer = new Issuer({
 const { Client } = issuer;
 const client = new Client({
   client_id: 'tiny-client',
-  client_secret: 'hoge',
+  client_secret: 'c1!3n753cr37',
 })
 
 app.get('/', async (req, res) => {
@@ -103,6 +102,7 @@ app.get('/oidc/callback', async (req, res) => {
         scope,
         grant_type: 'authorization_code',
         client_id: 'tiny-client',
+        client_secret: 'c1!3n753cr37',
         nonce: req.session.nonce || '',
       })
     })
